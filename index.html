@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhil Bethi | Tech Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* NEW PREMIUM COLOR PALETTE */
+            --bg-color: #0f172a; /* Deep Slate */
+            --surface: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent1: #2dd4bf; /* Cyber Teal */
+            --accent2: #3b82f6; /* Royal Blue */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Animated Background Gradients - Adjusted to Teal */
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.12) 0%, rgba(0,0,0,0) 70%);
+            top: -200px;
+            left: -200px;
+            z-index: -1;
+            border-radius: 50%;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Glassmorphism Header */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.85); /* Matches slate background */
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent1), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent1);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding-top: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #2dd4bf, #3b82f6, #2dd4bf);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        /* --- MODIFIED PROFILE IMAGE SECTION --- */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 300px;
+        }
+
+        .img-wrapper {
+            width: 350px;
+            height: 350px;
+            /* CHANGED: Made it a perfect circle */
+            border-radius: 50%; 
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(45, 212, 191, 0.3);
+            /* CHANGED: Removed the animation property */
+            border: 4px solid rgba(255,255,255,0.05);
+        }
+
+        /* CHANGED: Removed the @keyframes morph entirely */
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ------------------------------------- */
+
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent2), var(--accent1));
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(45, 212, 191, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(45, 212, 191, 0.35);
+        }
+
+        /* Scroll Reveal Classes */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Layout Sections */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Glassmorphic Cards */
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent1);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent1);
+        }
+        
+        .card h4 {
+            color: white;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags span {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--accent1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+        }
+
+        /* Custom Styles for Specific Sections */
+        .education-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--accent2);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .skills-container span {
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .skills-container span:hover {
+            border-color: var(--accent1);
+            color: var(--accent1);
+            transform: translateY(-3px);
+            background: rgba(45, 212, 191, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent1);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--accent2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">AB.</div>
+            <div class="nav-links">
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+            </div>
+            <a href="Bethi_Akhil_resume.pdf" download class="btn btn-primary">⬇ Download ATS Resume</a>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content hidden">
+                <h2 style="color: var(--text-muted); font-weight: 400; font-size: 1.5rem;">Hello, I'm</h2>
+                <h1>Bethi <span class="gradient-text">Akhil</span></h1>
+                <p>Software Developer & Machine Learning Engineer. I am a driven Fourth-year CSE student passionate about software engineering, web technologies, and generative AI.</p>
+                <div class="tags" style="margin-bottom: 2rem;">
+                    <span>Software Engineer</span>
+                    <span>Java Developer</span>
+                    <span>Python Developer</span>
+                    <span>Frontend Developer</span>
+                </div>
+            </div>
+            
+            <div class="hero-image hidden">
+                <div class="img-wrapper">
+                    <img src="Gemini_Generated_Image_szy94tszy94tszy9.png" alt="Bethi Akhil Profile Picture">
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <h2 class="section-title hidden">Professional <span class="gradient-text">Experience</span></h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>Software Intern</h3>
+                    <h4>IIT Ropar (via NPTEL)</h4>
+                    <p>Worked under the guidance of Sudarshan Iyengar sir. Solved complex case studies utilizing the MERN stack and collaborated effectively with team members.</p>
+                    <div class="tags">
+                        <span>MERN Stack</span>
+                        <span>Team Collaboration</span>
+                    </div>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Maths and Physics Tutor</h3>
+                    <h4>Vagheswari School, Dubbak</h4>
+                    <p>Taught students under the 10th standard as a part-time tutor for 2 years. Honed strong communication and leadership skills by simplifying complex concepts.</p>
+                    <div class="tags">
+                        <span>Mentorship</span>
+                        <span>Communication</span>
+                        <span>Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title hidden">Featured <span class="gradient-text">Innovations</span></h2>
+            <div class="grid">
+                
+                <div class="card hidden">
+                    <h3>Multilingual Translator</h3>
+                    <p>Engineered an advanced system leveraging Generative AI to seamlessly and accurately translate examination question papers into multiple languages.</p>
+                    <div class="tags">
+                        <span>Generative AI</span>
+                    </div>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Digital Certificate Hub</h3>
+                    <p>Full-stack verification system equipped with secure email-based authentication, distinct user portals, and an administrative tracking dashboard.</p>
+                    <div class="tags">
+                        <span>Java</span>
+                        <span>Servlets</span>
+                        <span>MySQL</span>
+                        <span>JS</span>
+                    </div>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Dog Breed Identifier</h3>
+                    <p>Developed a Deep Learning model that processes image inputs to accurately identify, analyze, and classify various dog breeds.</p>
+                    <div class="tags">
+                        <span>Deep Learning</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Write From Your Heart</h3>
+                    <p>An anti-plagiarism web application that explicitly disables copy-paste functionality from AI-generated content to encourage authentic, humanized expression.</p>
+                    <div class="tags">
+                        <span>Java</span>
+                        <span>HTML/CSS</span>
+                        <span>MySQL</span>
+                    </div>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Hospital Management System</h3>
+                    <p>Integrated doctors and patients onto a unified online platform, streamlining the process for online medical appointments.</p>
+                    <div class="tags">
+                        <span>Eclipse</span>
+                        <span>MySQL</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education" class="education">
+            <h2 class="section-title hidden">Academic <span class="gradient-text">Background</span></h2>
+            <div class="grid">
+                <div class="card hidden">
+                    <h3>B.Tech - Computer Science</h3>
+                    <h4>Indur Institute of Engineering and Technology, Siddipet</h4>
+                    <div class="education-meta">
+                        <span>2022 - 2026</span>
+                        <span>CGPA: 8.2</span>
+                    </div>
+                    <p>Jawaharlal Nehru Technological University Hyderabad</p>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Intermediate</h3>
+                    <h4>Sri Raghavendra Junior College, Dubbaka</h4>
+                    <div class="education-meta">
+                        <span>2019 - 2021</span>
+                        <span>CGPA: 9.74</span>
+                    </div>
+                    <p>Board of Intermediate, TS</p>
+                </div>
+
+                <div class="card hidden">
+                    <h3>Secondary School (10th)</h3>
+                    <h4>TS Model School, Lachapet</h4>
+                    <div class="education-meta">
+                        <span>2018 - 2019</span>
+                        <span>CGPA: 9.5</span>
+                    </div>
+                    <p>Board of Secondary Education, TS</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title hidden">Technical <span class="gradient-text">Arsenal</span> & Honors</h2>
+            
+            <div class="skills-container hidden" style="margin-bottom: 3rem;">
+                <span>C</span>
+                <span>Java</span>
+                <span>Python</span>
+                <span>Django</span>
+                <span>JavaScript</span>
+                <span>HTML & CSS</span>
+                <span>MySQL</span>
+                <span>GitHub</span>
+                <span>Machine Learning</span>
+                <span>Generative AI</span>
+            </div>
+
+            <div class="grid">
+                <div class="card hidden">
+                    <h3 style="color: white; margin-bottom: 1rem;">Certifications</h3>
+                    <p>✔️ HTML and CSS Certification (Code Liber)</p>
+                    <p>✔️ Python Basics (Great Learning)</p>
+                    <p>✔️ Java (GeeksforGeeks)</p>
+                </div>
+                <div class="card hidden">
+                    <h3 style="color: white; margin-bottom: 1rem;">Accomplishments</h3>
+                    <p>🏆 Certificate of Merit: Naukri Young Turks Contest (National Level)</p>
+                    <p>🚀 Hackathon Shortlist: Participated and successfully shortlisted in a competitive college hackathon.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's <span class="gradient-text">Connect</span></h2>
+            <p style="margin-bottom: 2rem;">akhilbethi04@gmail.com | 8317601030</p>
+            <div style="margin-bottom: 2rem;">
+                <a href="https://github.com/akhil0630" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/akhil-bethi-4b5b2427a" target="_blank">LinkedIn</a>
+            </div>
+            <p style="font-size: 0.8rem;">© 2026 Bethi Akhil. Built with passion.</p>
+        </footer>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
